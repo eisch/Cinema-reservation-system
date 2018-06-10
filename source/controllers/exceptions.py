@@ -1,53 +1,44 @@
-class RatingNotInRangeError(Exception):
-    def __init__(self):
-        Exception.__init__(self, "The rating must be between 1 and 10!")
-
-
-class MovieAlreadyInDatabaseError(Exception):
-    def __init__(self):
-        Exception.__init__(self, "The movie is in database already!")
-
-
 class LessThanEightSymbolsError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The password is less than 8 symbols")
+        Exception.__init__(self, "The password is less than 8 symbols!")
 
 
 class MissingCapitalLetterError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The password must contain at least one capital letter")
+        Exception.__init__(self, "The password must contain at least one capital letter!")
 
 
 class MissingSpecialSymbolError(Exception):
     def __init(self):
-        Exception.__init__(self, "The password must contain at least one special symbol")
+        Exception.__init__(self,
+                           "The password must contain at least one special symbol!")
 
 
-class InvalidMovieIdTypeError(Exception):
+class ProjectionsMissingMovieError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The movie_id's type is invalid")
+        Exception.__init__(self, "Projections doesn't exists in database!")
 
 
-class MovieNotInDataBaseError(Exception):
+class InvalidIdTypeError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The movie doesn't exists in database")
+        Exception.__init__(self, "Invalid id type!")
 
 
-class ProjectionInDataBaseError(Exception):
+class MovieNotInDbError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The projection exists in database")
+        Exception.__init__(self, "Movie not in database!")
 
 
-class InvalidDateError(Exception):
+class WantedSeatsMoreThanTicketsError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The date format is invalid!")
+        Exception.__init__(self, "Wanted seats are more than free tickets")
 
 
-class InvalidTimeError(Exception):
+class ProjectionIdNotInMovieProjectionsError(Exception):
     def __init__(self):
-        Exception.__init__(self, "The time format is invalid!")
+        Exception.__init__(self, "This projection id isn't for this movie")
 
 
-class TooMuchArgumentsError(Exception):
+class ReservationIdNotInUserReservationsError(Exception):
     def __init__(self):
-        Exception.__init__(self, "Too many arguments for this function")
+        Exception.__init__(self, "There's no reservation with this id for this user")

@@ -36,7 +36,7 @@ class Projections(Base):
         return f"[{self.id}] - {self.date} {self.time} ({self.type})"
 
     def __repr__(self):
-        return self.__str__
+        return f"[{self.id}] - {self.date} {self.time} ({self.type})"
 
 
 class Users(Base):
@@ -64,7 +64,7 @@ class Reservations(Base):
         return f"{self.projection.date} {self.projection.time} {self.projection.movie.name} Seat: {self.row} {self.col} "
 
     def __repr__(self):
-        return self.__str__
+        return f"{self.id} {self.projection.date} {self.projection.time} {self.projection.movie.name} Seat: {self.row} {self.col} "
 
 
 class CreateDatabase:

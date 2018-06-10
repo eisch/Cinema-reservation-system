@@ -1,3 +1,9 @@
 
+
+2018-06-10 21:20:40.671581
+Username: lz
 Movie: Avengers: Infinity War (8.8)
 Date and time: 2018-05-27 21:55:00 (4DX)
+Seats: (9, 6)
+
+

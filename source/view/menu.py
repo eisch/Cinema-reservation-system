@@ -1,6 +1,9 @@
 from controllers.main_controller import Controller
-# from dateutil.parser import parse - за конвертиране на датата
 from view.reservation_menu import ReservationMenu
+from view.current_logged_user import (logged_user,
+                                      current_username,
+                                      current_id)
+from getpass import getpass
 
 
 class MainMenu:
@@ -8,17 +11,23 @@ class MainMenu:
     def main_menu(cls):
         print("Welcome to our cinema reservation system!")
         print("Please choose an option. Enter 'help' for more info")
+        global current_username, current_id
         while True:
             command = input(">>> ")
             if command.lower() == 'show movies':
-                ReservationMenu.show_all_movies()
+                Controller.show_all_movies()
             elif command.lower().startswith('show movie projections'):
-                cls.show_movie_projection_menu(command)
+                list_command = command.split()[3:]
+                if len(list_command) < 3:
+                    Controller.show_projections(list_command)
+                else:
+                    print("Too much arguments")
             elif command.lower() == 'make reservation':
-                # cls.check_if_user_is_logged()
-                ReservationMenu.main_reservation_menu()
+                if cls.check_if_user_is_logged():
+                    Controller.make_reservation(current_id, current_username)
             elif command.lower().startswith('cancel reservation'):
-                ReservationMenu.cancel_reservation(command)
+                if cls.check_if_user_is_logged():
+                    Controller.cancel_reservation(current_id)
             elif command.lower() == 'exit':
                 break
             elif command.lower() == 'help':
@@ -27,32 +36,22 @@ class MainMenu:
                 print("Invalid command, please try again")
 
     @classmethod
-    def show_all_projections(cls, *args):
-        movie_name = Controller.show_movie_name_by_id(args[0])[0]
-        if len(args) == 1:
-            print(f"Projections for movie {movie_name}")
-            for projection in Controller.show_projections_by_id(args[0]):
-                print(projection)
-        elif len(args) == 2:
-            print(f"Projections for movie {movie_name} on date {args[1]}")
-            for projection in (Controller
-                               .show_projections_by_id_and_date(args[0],
-                                                                args[1])):
-                print(projection)
-
-    @classmethod
-    def show_movie_projection_menu(cls, command):
-        command_list = command.split()
-        try:
-            if len(command_list) == 4:
-                cls.show_all_projections(command_list[3])
-            elif len(command_list) == 5:
-                cls.show_all_projections(command_list[3],
-                                         command_list[4])
-        except ValueError:
-            print("Invalid values!")
-        except IndexError:
-            print("Too many/much arguments!")
+    def check_if_user_is_logged(cls):
+        global logged_user, current_username, current_id
+        if logged_user:
+            return True
+        else:
+            print("You need to a user in the system to make reservations!")
+            username = input("Username: ")
+            current_username = username
+            password = getpass()
+            if not Controller.register_user(username, password):
+                logged_user = True
+                current_id = Controller.user_id_by_username(username)
+                return True
+            else:
+                print("Registration failed.")
+                return False
 
     @classmethod
     def show_help(cls):
