@@ -7,3 +7,10 @@ Date and time: 2018-05-27 21:55:00 (4DX)
 Seats: (9, 6)
 
 
+2018-06-10 23:34:24.278326
+Username: elly
+Movie: Avengers: Infinity War (8.8)
+Date and time: 2018-05-25 21:30:00 (3D)
+Seats: (5, 6)
+
+

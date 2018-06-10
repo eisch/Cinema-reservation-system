@@ -161,6 +161,7 @@ class ReservationController:
     @classmethod
     def main_reservation(cls, current_id, current_username):
         try:
+            print(f"Welcome, {current_username}!")
             number_seats = cls.step_one()
             movie_id = cls.step_two(number_seats)
             projection = cls.step_three(movie_id)

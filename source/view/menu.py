@@ -1,5 +1,4 @@
 from controllers.main_controller import Controller
-from view.reservation_menu import ReservationMenu
 from view.current_logged_user import (logged_user,
                                       current_username,
                                       current_id)
@@ -16,7 +15,7 @@ class MainMenu:
             command = input(">>> ")
             if command.lower() == 'show movies':
                 Controller.show_all_movies()
-            elif command.lower().startswith('show movie projections'):
+            elif command.lower().startswith('show movie projection'):
                 list_command = command.split()[3:]
                 if len(list_command) < 3:
                     Controller.show_projections(list_command)
